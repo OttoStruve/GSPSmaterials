@@ -1,44 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="chrome=1" />
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<title>Plotting in Python slides</title>
+<title>Plotting in Python</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<!-- General and theme style sheets -->
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/2.6.2/css/reveal.css">
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/2.6.2/css/theme/simple.css" id="theme">
-
-<!-- For syntax highlighting -->
-<link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/2.6.2/lib/css/zenburn.css">
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'http://cdn.jsdelivr.net/reveal.js/2.6.2/css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-}
-
-</script>
-
-<!--[if lt IE 9]>
-<script src="http://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/html5shiv.js"></script>
-<![endif]-->
-
-<!-- Get Font-awesome from cdn -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
 
 <style type="text/css">
     .clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0}
@@ -1650,76 +1618,63 @@ span#checkpoint_status,span#autosave_status{font-size:small}
 
 <style type="text/css">
 /* Overrides of notebook CSS for static HTML export */
-html {
-  overflow-y: auto;
+body {
+  overflow: visible;
+  padding: 8px;
 }
-.reveal {
-  font-size: 160%;
+
+div#notebook {
+  overflow: visible;
+  border-top: none;
 }
-.reveal pre {
-  width: inherit;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-}
-.reveal section img {
-  border: 0px solid black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-}
-.reveal i {
-  font-style: normal;
-  font-family: FontAwesome;
-  font-size: 2em;
-}
-.reveal .slides {
-  text-align: left;
-}
-.reveal.fade {
-  opacity: 1;
-}
-.reveal .progress {
-  position: static;
-}
-div.input_area {
-  padding: 0.06em;
-}
-div.code_cell {
-  background-color: transparent;
-}
-div.prompt {
-  width: 11ex;
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-  text-align: right;
-}
-div.output_area pre {
-  font-family: monospace, sans-serif;
-  font-size: 80%;
-}
-div.output_prompt {
-  /* 5px right shift to account for margin in parent container */
-  margin: 5px 5px 0 0;
-}
-.rendered_html p {
-  text-align: inherit;
+
+@media print {
+  div.cell {
+    display: block;
+    page-break-inside: avoid;
+  } 
+  div.output_wrapper { 
+    display: block;
+    page-break-inside: avoid; 
+  }
+  div.output { 
+    display: block;
+    page-break-inside: avoid; 
+  }
 }
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
 <link rel="stylesheet" href="custom.css">
 
-</head>
+<!-- Loading mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
 
+</head>
 <body>
-<div class="reveal">
-<div class="slides">
-<section>
-    <section>
-    
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1730,10 +1685,7 @@ div.output_prompt {
 <p>Kevin Gullikson</p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1758,13 +1710,9 @@ div.output_prompt {
 </ul></li>
 <li>APLpy: Astronomy plotting library</li>
 </ul>
-<h4 id="all-images-and-source-for-this-slideshow-are-available-here">All images and source for this slideshow are available <a href="https://github.com/OttoStruve/GSPS/tree/master/Kevin-Mar2015">here</a></h4>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -1783,8 +1731,7 @@ div.output_prompt {
 </ul>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -1818,8 +1765,6 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 
 </div>
-    </div></section><section>
-    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -2056,8 +2001,7 @@ SUVORK5CYII=
 </div>
 </div>
 
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -2066,8 +2010,7 @@ SUVORK5CYII=
 <h1 id="axis-labels">Axis Labels</h1>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -2333,7 +2276,6 @@ pbNERFQkJgsiIioSkwURERWJyYKIiIrEZEFEREVisiAioiL9P442qXE3jMBeAAAAAElFTkSuQmCC
 </div>
 
 </div>
-    </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -2358,8 +2300,7 @@ In&nbsp;[]:
 <p><img src="Images/Sin_curve_with_axes.svg" width="800" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -2368,8 +2309,7 @@ In&nbsp;[]:
 <h1 id="legends-latex">Legends + LaTex</h1>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -2836,7 +2776,6 @@ S/8Hs5OrOeKrJTAAAAAASUVORK5CYII=
 </div>
 
 </div>
-    </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -2863,8 +2802,7 @@ In&nbsp;[]:
 <p><img src="Images/sinplot_with_legend.svg" width="600" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -2873,8 +2811,7 @@ In&nbsp;[]:
 <h1 id="annotation">Annotation</h1>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -3367,7 +3304,6 @@ ByFUKQAAAABJRU5ErkJggg==
 </div>
 
 </div>
-    </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -3399,8 +3335,7 @@ In&nbsp;[]:
 <p><img src="Images/Annotated.svg" width="600" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3443,8 +3378,7 @@ In&nbsp;[6]:
 </div>
 </div>
 
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3453,8 +3387,7 @@ In&nbsp;[6]:
 <p><img src="Images/DoubleAxes.svg" width="1000" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3463,8 +3396,7 @@ In&nbsp;[6]:
 <h1 id="subplots">Subplots</h1>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -3791,7 +3723,6 @@ RgAAAABJRU5ErkJggg==
 </div>
 
 </div>
-    </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -3815,8 +3746,7 @@ In&nbsp;[]:
 </div>
 </div>
 
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3825,8 +3755,7 @@ In&nbsp;[]:
 <p><img src="Images/sinplot_resid_basic.svg" width="1000" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3835,8 +3764,7 @@ In&nbsp;[]:
 <p><img src="Images/sinplot_resid_nice.svg" width="1000" ></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3874,10 +3802,7 @@ In&nbsp;[7]:
 </div>
 </div>
 
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -3899,8 +3824,7 @@ In&nbsp;[7]:
 <h3 id="if-matplotlib-tries-to-make-easy-things-easy-and-hard-things-possible-seaborn-aims-to-make-a-well-defined-set-of-hard-things-easy-too.">&quot;If matplotlib “tries to make easy things easy and hard things possible”, seaborn aims to make a well-defined set of hard things easy too.</h3>
 </div>
 </div>
-</div><div style=display:none>
-    
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -4614,8 +4538,6 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 </div>
 
 </div>
-    </div></section><section>
-    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4624,10 +4546,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/Annotated.svg" width="400" > <img src="Images/Annotated_Seaborn_default.svg" style="float: left; width: 45%; margin-right: 1%; margin-bottom: 0.5em;"> <img src="Images/Annotated_Seaborn_white.svg" style="float: left; width: 45%; margin-right: 1%; margin-bottom: 0.5em;"></p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4647,8 +4566,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 </ul>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4657,10 +4575,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/bokeh_screenshot.png" ></p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4675,8 +4590,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 </ul>
 </div>
 </div>
-</div><div class="fragment">
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4686,8 +4600,6 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 </div>
 </div>
 </div>
-    </div></section><section>
-    
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4696,10 +4608,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/APLpy_gallery.png" width="700"></p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4708,8 +4617,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <h1 id="examples">Examples</h1>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4718,8 +4626,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/structure-vanilla_t0.png" width="700"> Credit: Jacob Hummel. <a href="http://nbviewer.ipython.org/github/hummel/xray_notebooks/blob/master/Structure%20Visualization.ipynb">Source</a></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4728,8 +4635,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/disks_1024.png" width="900"> Credit: Jacob Hummel. <a href="http://nbviewer.ipython.org/github/hummel/xray_notebooks/blob/master/Disk%20Structure.ipynb">Source</a></p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4738,8 +4644,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/Aaron1.png" width="600"> Credit: Aaron Jaurez.</p>
 </div>
 </div>
-</div></section><section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4748,10 +4653,7 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <p><img src="Images/Aaron2.png" width="600"> Credit: Aaron Jaurez.</p>
 </div>
 </div>
-</div></section>
-    </section><section>
-    <section>
-    
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
@@ -4766,65 +4668,8 @@ AAAgBVEBAACk+AZhXCn9WQvaNgAAAABJRU5ErkJggg==
 <h2 id="thanks">Thanks!</h2>
 </div>
 </div>
-</div></section>
-    </section>
 </div>
-</div>
-
-<script src="http://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/head.min.js"></script>
-
-<script src="http://cdn.jsdelivr.net/reveal.js/2.6.2/js/reveal.js"></script>
-
-<script>
-
-// Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-controls: true,
-progress: true,
-history: true,
-
-theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/none
-
-// Optional libraries used to extend on reveal.js
-dependencies: [
-{ src: "http://cdn.jsdelivr.net/reveal.js/2.6.2/lib/js/classList.js", condition: function() { return !document.body.classList; } },
-{ src: "http://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/highlight/highlight.js", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-{ src: "http://cdn.jsdelivr.net/reveal.js/2.6.2/plugin/notes/notes.js", async: true, condition: function() { return !!document.body.classList; } }
-]
-});
-</script>
-
-<!-- Loading mathjax macro -->
-<!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
-    <!-- MathJax configuration -->
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
-            processEscapes: true,
-            processEnvironments: true
-        },
-        // Center justify equations in code and markdown cells. Elsewhere
-        // we use CSS to left justify single line equations in code cells.
-        displayAlign: 'center',
-        "HTML-CSS": {
-            styles: {'.MathJax_Display': {"margin": 0}},
-            linebreaks: { automatic: true }
-        }
-    });
-    </script>
-    <!-- End of mathjax configuration -->
-
-<script>
-Reveal.addEventListener( 'slidechanged', function( event ) {
-  window.scrollTo(0,0);
-  MathJax.Hub.Rerender(event.currentSlide);
-});
-</script>
-
+    </div>
+  </div>
 </body>
-
 </html>
